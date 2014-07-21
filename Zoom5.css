@@ -1,0 +1,383 @@
+/*SETUP START*/
+
+	div.Zoom5{
+		position: fixed;
+		left: 0;
+		width: 100%;
+		top: 0;
+		height: 100%;
+		max-height: 100%;
+		max-width: 100%;
+		display: table;
+		table-layout: fixed;
+		z-index: 1000;
+	}
+	
+	div.Zoom5 div.background{
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+		display: table-cell;
+		text-align: center;
+		vertical-align: middle;
+	}
+	
+	div.Zoom5 div.content_container
+	{
+		position: relative;
+		max-height: 100%;
+	}
+	
+	div.Zoom5 div.content
+	{
+		position: relative;
+		max-height: 100%;
+	}
+	
+	div.Zoom5 div.content > *{
+		display: inline-block;
+	}
+	
+	div.Zoom5 div.next,
+	div.Zoom5 div.prev,
+	div.Zoom5 div.close{
+		cursor: pointer;
+	}
+	
+/*SETUP END*/
+
+/* DEFAULT LAYOUT START*/
+
+	div.Zoom5 div.current{
+		position: fixed;
+		left: 1em;
+		bottom: 1em;
+		width: 2em; 
+		height: 2em;
+		line-height: 2em;
+	}
+	
+	div.Zoom5 div.count{
+		position: fixed;
+		right: 1em;
+		bottom: 1em;
+		width: 2em; 
+		height: 2em;
+		line-height: 2em;
+	}
+	
+	div.Zoom5 div.next{
+		position: fixed;
+		top: 50%;
+		height: 2em;
+		width: 2em;
+		margin-top: -.5em;
+		right: 1.5em;
+	}
+	
+	div.Zoom5 div.prev{
+		position: fixed;
+		top: 50%;
+		height: 2em;
+		width: 2em;
+		margin-top: -.5em;
+		left: 1.5em;
+	}
+	
+	div.Zoom5 div.close{
+		position: fixed;
+		right: 1em;
+		top: 1em;
+		height: 2em;
+		width: 2em;
+	}
+
+/* DEFAULT LAYOUT END*/
+
+/* DEFAULT VISUAL START*/
+
+	div.Zoom5 div.background{
+		background: hsla(0,0%,0%,.5);
+	}
+	
+	div.Zoom5 div.current{
+		font-size: 1em;
+		text-align: center;
+		color: hsla(0,0%,0%,.25);
+		background: hsla(0,0%,100%,.25);
+		border: solid .1em hsla(0,0%,0%,.25);
+		border-radius: 1.5em; 
+	}
+	
+	div.Zoom5 div.count{
+		font-size: 1em;
+		text-align: center;
+		color: hsla(0,0%,0%,.25);
+		background: hsla(0,0%,100%,.25);
+		border: solid .1em hsla(0,0%,0%,.25);
+		border-radius: 1.5em; 
+
+	}
+	
+	div.Zoom5 div.count:before{
+		content: " / ";
+	}
+	
+	div.Zoom5 div.content > *{
+		box-shadow: 0 4px 8px hsla(0,0%,0%,.5), 0 16px 32px hsla(0,0%,0%,.5);
+	}
+	
+	div.Zoom5 div.next{
+		font-size: 1em;
+		border: solid .1em transparent;
+		border-radius: 1.5em;
+	}
+	
+	div.Zoom5 div.next:before{
+		content: "";
+		position: absolute;
+		width: .9em;
+		left: .35em;
+		top: 50%;
+		margin-top: -.44em;
+		height: .9em;
+		border-top: inherit;
+		border-right: inherit;
+		box-sizing:border-box;
+		-webkit-transform: rotate(45deg);	
+		-moz-transform: rotate(45deg);	
+		-ms-transform: rotate(45deg);	
+		-o-transform: rotate(45deg);	
+		transform: rotate(45deg);
+		border-color: hsla(0,0%,100%,.75);
+	}
+	
+	div.Zoom5 div.prev{
+		font-size: 1em;
+		border: solid .1em transparent;
+		border-radius: 1.5em;
+	}
+	
+	div.Zoom5 div.prev:before{
+		content: "";
+		position: absolute;
+		width: .9em;
+		right: .35em;
+		top: 50%;
+		margin-top: -.44em;
+		height: .9em;
+		border-top: inherit;
+		border-left: inherit;
+		box-sizing:border-box;
+		-webkit-transform: rotate(315deg);	
+		-moz-transform: rotate(315deg);	
+		-ms-transform: rotate(315deg);	
+		-o-transform: rotate(315deg);	
+		transform: rotate(315deg);
+		border-color: hsla(0,0%,100%,.75);
+	}
+	
+	div.Zoom5 div.close{
+		line-height: 1.5em;
+		border: solid .1em hsla(0,0%,100%,.75);
+		background: hsla(0,0%,0%,.25);
+		border-radius: 1.5em;
+		font-size: 1em;
+	}
+	
+	div.Zoom5 div.close:hover{
+		background: hsla(0,0%,0%,.5);
+	}
+	
+	div.Zoom5 div.close:before,
+	div.Zoom5 div.close:after{
+		content: "";
+		position: absolute;
+		width: 1.25em;
+		left: .35em;
+		top: 50%;
+		margin-top: -.14em;
+		height: 0;
+		border-top: inherit;
+		-webkit-box-sizing:border-box;
+		-moz-box-sizing:border-box;
+		-ms-box-sizing:border-box;
+		-o-box-sizing:border-box;
+		box-sizing:border-box;
+
+	}
+	
+	div.Zoom5 div.close:before{
+		-webkit-transform: rotate(315deg);	
+		-moz-transform: rotate(315deg);	
+		-ms-transform: rotate(315deg);	
+		-o-transform: rotate(315deg);	
+		transform: rotate(315deg);
+	}
+	
+	div.Zoom5 div.close:after{
+		-webkit-transform: rotate(45deg);	
+		-moz-transform: rotate(45deg);	
+		-ms-transform: rotate(45deg);	
+		-o-transform: rotate(45deg);	
+		transform: rotate(45deg);
+	}
+
+/* DEFAULT VISUAL END*/
+
+
+/* NEAR LAYOUT START*/
+
+	div.Zoom5.near .content_container
+	{
+		position: relative;
+		display: inline-block;
+	}
+	
+	div.Zoom5.near .background
+	{
+		padding: 3em;
+	}
+
+	div.Zoom5.near .close,
+	div.Zoom5.near .prev,
+	div.Zoom5.near .next,
+	div.Zoom5.near .count,
+	div.Zoom5.near .current
+	{
+		position: absolute;
+	}
+
+	div.Zoom5.near .close
+	{
+		top: -2.4em;
+		right: -2.5em;
+	}
+	
+	div.Zoom5.near .next
+	{
+		right: -2.5em;
+	}
+	
+	div.Zoom5.near .count
+	{
+		right: -2.4em;
+		bottom: -2em;
+	}
+	
+	
+	div.Zoom5.near .prev
+	{
+		left: -2.5em;
+	}
+	
+	div.Zoom5.near .current
+	{
+		left: -2.4em;
+		bottom: -2em;
+	}
+	
+	
+/* NEAR LAYOUT END*/
+
+/* COMPACT LAYOUT START*/
+
+	div.Zoom5.compact .content_container
+	{
+		position: relative;
+		display: inline-block;
+	}
+	
+	div.Zoom5.compact .background
+	{
+		padding: 0;
+	}
+
+	div.Zoom5.compact .close,
+	div.Zoom5.compact .prev,
+	div.Zoom5.compact .next,
+	div.Zoom5.compact .count,
+	div.Zoom5.compact .current
+	{
+		position: absolute;
+	}
+
+	div.Zoom5.compact .close
+	{
+		top: 1em;
+		right: 1em;
+	}
+
+/* COMPACT LAYOUT END*/
+
+
+
+/* DARK BUTTONS VISUAL START*/
+
+	div.Zoom5.dark_buttons .close
+	{
+		background: black;
+		border-color:white;
+		box-shadow: 0 2px 4px hsla(0,0%,0%,.5);
+	}
+	
+	div.Zoom5.dark_buttons .next,
+	div.Zoom5.dark_buttons .prev{
+		background: black;
+		border-color:white;
+		box-shadow: 0 2px 4px hsla(0,0%,0%,.5);
+	}	
+
+/* DARK BUTTONS VISUAL END*/
+
+/* SMALL VISUAL START*/
+
+	div.Zoom5.small .close,
+	div.Zoom5.small .next,
+	div.Zoom5.small .prev,
+	div.Zoom5.small .current,
+	div.Zoom5.small .count	
+	{
+		font-size: .6em;
+		border-width: .3em;
+	}
+
+/* SMALL VISUAL END*/
+
+/* BIG VISUAL START*/
+
+	div.Zoom5.big .close,
+	div.Zoom5.big .next,
+	div.Zoom5.big .prev,
+	div.Zoom5.big .current,
+	div.Zoom5.big .count	
+	{
+		font-size: 1.6em;
+		border-width: .1em;
+	}
+
+/* BIG VISUAL END*/
+
+/* HUGE VISUAL START*/
+
+	div.Zoom5.huge .close,
+	div.Zoom5.huge .next,
+	div.Zoom5.huge .prev,
+	div.Zoom5.huge .current,
+	div.Zoom5.huge .count	
+	{
+		font-size: 3.0em;
+		border-width: .1em;
+	}
+
+/* HUGE VISUAL END*/
+
+/* LIGHT VISUAL START*/
+
+	div.Zoom5.light > div.background	
+	{
+		background: hsla(0,0%,100%,.5);
+	}
+	
+
+/* LIGHT VISUAL END*/
