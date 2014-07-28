@@ -113,7 +113,20 @@ Zoom5.parse = function(){
 
 	//enlarge images in links
 
-	$("a.zoom, .zoom a").click(function(){
+	$("a.zoom").click(function(){
+		
+		objects = new Array();
+		if($(this).attr("href")) objects[0] = $(this).attr("href");		
+		classes = $(this).attr("class");
+		
+		if(objects.length > 0)
+		{
+			Zoom5.init(objects,0);
+		}
+		return false;
+	});
+	
+	$(".zoom").not("a").find("a").click(function(){
 		
 		objects = new Array();
 		$(this).parent().find("a").each(function(i){
@@ -186,7 +199,7 @@ Zoom5.open = function (object,current,count){
 		
 		source = $(document.createElement("source"));
 		$(new_object).prepend(source);
-		new_object.attr('id', 'example_video_test');
+		new_object.attr('id', 'video');
 		new_object.attr('class', 'video-js vjs-default-skin');
 		source.attr("src",object);
 		new_object.attr("controls","controls");
@@ -194,9 +207,7 @@ Zoom5.open = function (object,current,count){
 		new_object.attr("preload","auto");
 		source.attr("type","video/"+Zoom5.filetype(object));
 		new_object.attr('data-setup', '{}');
-		//videojs("videojs", {}, function(){
-		// Player (this) is initialized and ready.
-	//});
+
 	}
 	else if(content_type == "html"){
 		new_object = $($(this).attr("href"));
@@ -211,14 +222,14 @@ Zoom5.open = function (object,current,count){
 	
 	
 	if (Modernizr.video.h264){
-	}else if($("#example_video_test").length > 0){
+	}else if($("#video").length > 0){
 		
-		$("#example_video_test").attr("width","1024");
-		$("#example_video_test").attr("height","576");
-		Zoom5.player = _V_("example_video_test");
+		$("#video").attr("width","1024");
+		$("#video").attr("height","576");
+		Zoom5.player = _V_("video");
 		
-		$("#example_video_test").attr("org-width","1024");
-		$("#example_video_test").attr("org-height","576");
+		$("#video").attr("org-width","1024");
+		$("#video").attr("org-height","576");
 	}
 	
 	new_object.resize();
@@ -339,7 +350,7 @@ Zoom5.content_type = function(file){
 
 Zoom5.filetype = function(file){
 	
-	file = file.toLowerCase().split(".").pop();
+	file = file.toLowerCase().split(".").pop().split("?").shift();
 	array = new Array();
 	array["mov"] = "mp4";
 	if(file in array) return array[file];
